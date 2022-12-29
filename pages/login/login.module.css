@@ -34,6 +34,7 @@
  
   width: 26%;
   height: 20%;
+  font-weight: bold;
 
   box-shadow: -5px -5px 20px #393f4b, 5px 5px 20px black;
   transition: all 0.2s ease-in-out;
@@ -45,9 +46,28 @@
   padding: 16px;
   background-color: white;
   color: black;
-  font-size: large;
+  font-size: larger;
   font-family: 'Roboto', sans-serif;
+
 }
+
+.borrar{
+  color: red;
+  font-size: large;
+}
+.continuar{
+  display: flex;
+  align-items: center;
+  justify-content:center ; 
+  padding: 0;
+  color: green;
+  font-size: large;
+}
+.continuar.disabled{
+  background-color: gray;
+  box-shadow: -2px -2px 5px #393f4b, 2px 2px 5px black;
+}
+
 
 .number:hover{
   box-shadow: -2px -2px 5px #393f4b, 2px 2px 5px black;
