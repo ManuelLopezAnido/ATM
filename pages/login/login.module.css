@@ -1,0 +1,113 @@
+.loginMain{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid red;
+  height: 10vh;
+  width: 70vw;
+}
+
+.loginBody {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  border: 2px solid black;
+  height: 70vh;
+  width: 70vw;
+}
+.numbers{
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+  border: solid blue 1px;
+  flex-wrap: wrap;
+}
+
+.number{
+ 
+  width: 26%;
+  height: 20%;
+
+  box-shadow: -5px -5px 20px #393f4b, 5px 5px 20px black;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  border-radius: 320px;
+  padding: 16px;
+  background-color: white;
+  color: black;
+  font-size: large;
+  font-family: 'Roboto', sans-serif;
+}
+
+.number:hover{
+  box-shadow: -2px -2px 5px #393f4b, 2px 2px 5px black;
+}
+.number:active{
+  box-shadow: inset 1px 1px 2px black, inset -1px -1px 2px #393f4b;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  width: 40%;
+  border: green 1px solid
+}
+
+
+
+
+.input {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.2px;
+  font-size: 16px;
+}
+.Form {
+  padding: 16px;
+  width: 320px;
+  margin: 0 auto;
+}
+
+.input {
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  border-radius: 320px;
+  padding: 16px;
+  background-color: white;
+  outline: none;
+  margin-right: 8px;
+  box-shadow: inset 2px 2px 5px #878a92, inset -10px -10px 10px  #FFF;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.label {
+  display: block;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.input:focus {
+  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
