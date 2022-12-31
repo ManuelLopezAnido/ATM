@@ -15,6 +15,11 @@
 .question {
   font-size: 3vh;
 }
+
+.operation {
+  border: solid 1px red
+}
+
 .menu{
   border: solid 1px black;
   display: flex;
@@ -46,13 +51,4 @@
 }
 .menu button:active{
   box-shadow: inset 1px 1px 2px black, inset -1px -1px 2px #393f4b;
-}
-.cancel {
-  align-self: flex-start;
-  width: 220px;
-  margin-left: 10%;
-}
-.cancel button{
-  color: white;
-  background-color: orange;
 }

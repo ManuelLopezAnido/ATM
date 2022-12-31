@@ -1,6 +1,6 @@
 import styles from './login.module.css'
 import React, { useEffect, useState, useContext } from "react"
-
+import { useRouter } from 'next/navigation';
 
 
 export default function Login() {
@@ -15,6 +15,7 @@ export default function Login() {
   }
   const arrNumber: Array<string> = ["1","2","3","4","5","6","7","8","9","borrar","0","continuar"]
 
+  const router = useRouter();
   const [inputs, setInputs] = useState <inputs> (firstInput)
   const [onFocus, setOnFocus] = useState <string> ()
   const [verificated, setVerificated] = useState <boolean> (false)
@@ -52,7 +53,15 @@ export default function Login() {
     fetch('/api/users', options)
     .then((res)=>res.json())
     .then((json)=> {
-      json.authorization ? console.log("autorizado") :console.log("no autorizado")
+      if (json){
+        const userString = JSON.stringify(json)
+        sessionStorage.setItem("userATM", userString)
+        router.push('/welcome')
+      } else {
+        alert("DNI o Clave incorrecta. Intente nuevamente")
+        setInputs({...inputs, clave:""})
+      }
+     
     })
     .catch((err)=>console.error("error on server", err));
   } 
@@ -74,7 +83,6 @@ export default function Login() {
     if (num==='borrar'){
       setInputs({...inputs, dni: "", clave:""})
     } else if (num === 'continuar'){
-      console.log('sigue el fetch')
       fetchLoginUser()
     } else {
       setInputs({...inputs, [actualFocus]: inputs[actualFocus] + num})

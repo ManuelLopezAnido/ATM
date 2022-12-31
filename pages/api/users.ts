@@ -35,8 +35,9 @@ export default function handler(
       break
     case 'PUT':
       const userExist = (user:user)=>{ return (user.dni === body.dni && user.clave === body.clave)}
-      const verify = data.some(userExist)
-      res.status(200).send({authorization:verify})
+      const userFound = data.find(userExist)
+      const clone = userFound ? (({ clave, ...rest }) => rest)(userFound) : false // remove clave if user was found
+      res.status(200).send(clone)
     break
     case 'GET':
       res.status(200).send(data)
