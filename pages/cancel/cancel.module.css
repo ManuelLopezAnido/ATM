@@ -1,0 +1,15 @@
+.cancel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.cancel h1 {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 60%;
+  border: 2px solid black;
+}

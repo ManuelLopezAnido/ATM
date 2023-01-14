@@ -2,7 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import fs from 'fs'
 import path from 'path';
-import { verify } from 'crypto';
 
 let dataRaw = fs.readFileSync( path.join(process.cwd(),'./data/data.json'))
 const data = JSON.parse(dataRaw.toString())
@@ -17,7 +16,7 @@ export default function handler(
 ) {
   const requestMethod = req.method;
   console.log("BODY",req.body)
-  //const body = req.body ? JSON.parse(req.body) : ""
+  console.log("envv:",process.env.API_URL)
   const body = req.body
   console.log('body',body.clave, body.dni)
   switch (requestMethod) {
@@ -42,6 +41,8 @@ export default function handler(
     case 'GET':
       res.status(200).send(data)
     break
+    default:
+      res.status(400).json({ message: 'Method does not available'})
   }
 
 }

@@ -1,22 +1,20 @@
 .body{
-  height: 70vh;
-  border: 1px solid violet;
+  height: 75vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  padding-bottom: 2%;
 }
 .welcome{
-  font-size: 4vh;
- 
-  margin-bottom: -60px;
+  margin-top: 10%;
+  font-size: 2.5vw;
 }
 
 .question {
-  font-size: 3vh;
+  font-size: 2vw;
 }
 .menu{
-  border: solid 1px black;
   display: flex;
   justify-content:space-around;
   width: 60%;

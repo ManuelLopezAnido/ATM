@@ -1,30 +1,50 @@
 .body{
-  height: 70vh;
-  border: 1px solid violet;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  width: 70%;
+  height: 70%;
+  border: solid 2px black;
+  padding: 0 5%;
 }
-.welcome{
+
+.saldo{
   font-size: 4vh;
- 
-  margin-bottom: -60px;
+  font-weight: 300;
+  margin-bottom: -40px;
+  
+}
+
+.amount{
+  font-weight: 300;
+  font-size: 4.5vh;
 }
 
 .question {
-  font-size: 3vh;
+  font-size: 3.5vh;
 }
 
 .operation {
-  border: solid 1px red
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 60%;
+  height: 40%;
+
 }
 
 .menu{
-  border: solid 1px black;
   display: flex;
   justify-content:space-around;
-  width: 60%;
+  width: 100%;
   flex-wrap: wrap;
 }
 .menu a{

@@ -1,26 +1,30 @@
 [
   {
-    "name":"Manuel",
+    "name": "Manuel",
     "lastName": "Lopez Anido",
     "dni": "39140273",
-    "clave": "1889"
+    "clave": "1889",
+    "money": "10123"
   },
   {
-    "name":"Chiara",
-    "lastName":"Cardona",
+    "name": "Chiara",
+    "lastName": "Cardona",
     "dni": "1234567",
-    "clave": "1234"
+    "clave": "1234",
+    "money": "450000"
   },
   {
-    "name":"Emiliano",
-    "lastName":"Martinez",
+    "name": "Emiliano",
+    "lastName": "Martinez",
     "dni": "98765432",
-    "clave": "4321"
+    "clave": "4321",
+    "money": "50000"
   },
   {
     "name": "Eduardo",
     "lastName": "Cruz",
     "dni": "7777777",
-    "clave": "4444"
+    "clave": "4444",
+    "money": "45000"
   }
 ]

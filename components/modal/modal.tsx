@@ -16,7 +16,7 @@ const Modal = (props: Props)=>{
   const handleAceptar = () => {
     sessionStorage.removeItem("userATM");
     props.close()
-    router.push('/login')
+    router.push('/cancel')
   }
   return(
     <div 

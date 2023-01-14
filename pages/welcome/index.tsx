@@ -17,10 +17,22 @@ const Welcome = () => {
   const router = useRouter();
   useEffect (()=>{
     const userRaw: string | null = sessionStorage.getItem("userATM");
+
     userRaw ? 
     setUser(JSON.parse(userRaw)) :  
     router.push('/login')
   },[])
+
+
+
+  useEffect (()=>{
+    const timeout = setTimeout(() => {
+      sessionStorage.removeItem("userATM");
+      router.push('/cancel')
+    },30000)
+
+    return (() => clearTimeout(timeout))
+  },[showModal])
 
 
   const closeModal=()=>{
@@ -37,7 +49,7 @@ const Welcome = () => {
         Bienvenido {user?.name}
       </div>
       <div className={styles.question}>
-        ¿Que operacion deseas realizar?
+        ¿Que operación deseas realizar?
       </div>
       <div className={styles.menu}> 
         <Link href={'/extraction'} >

@@ -9,28 +9,65 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border: 1px solid red; */
   height: 10vh;
   width: 70vw;
-  font-size: 2.5vw;
+  font-size: 2vw;
 }
 
 .loginBody {
-  border: solid 2px black;
-  padding: 3% 3% 0 3%;
   margin-top: 20px;
+  padding: 3%;
   display: flex;
   justify-content: space-around;
+  border: 2px solid black;
   height: 70vh;
   width: 70vw;
 }
+.loginBody .buttons{
+  display: flex;
+  justify-content: space-between;
+}
+.buttons h2{
+  font-size: 2.8vw;
+  margin-top: 40% ;
+}
+.buttons a{
+  width: 220px;
+  margin: 15px 15px;
+  text-decoration: none;
+}
+.buttons button{
+  width: 100%;
+  box-shadow: -5px -5px 20px #393f4b, 5px 5px 20px black;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  border-radius: 320px;
+  padding: 16px;
+  background-color: white;
+  color: black;
+  font-family: 'Roboto', sans-serif;
+}
+.buttons button:hover{
+  box-shadow: -2px -2px 5px #393f4b, 2px 2px 5px black;
+}
+.buttons button:active{
+  box-shadow: inset 1px 1px 2px black, inset -1px -1px 2px #393f4b;
+}
+
+.buttons .disabled{
+  background-color: gray;
+  box-shadow: -2px -2px 5px #393f4b, 2px 2px 5px black;
+}
+
+
 .numbers{
   display: flex;
   justify-content: space-around;
   width: 40%;
-  /* border: solid black 1px; */
   flex-wrap: wrap;
-  padding-bottom: 2%;
 }
 
 .number{
@@ -54,10 +91,7 @@
 
 .borrar{
   color: red;
-  display: flex;
-  align-items: center;
-  justify-content:center ; 
-  font-size: 1.2vw
+  font-size: large;
 }
 .continuar{
   display: flex;
@@ -65,7 +99,7 @@
   justify-content:center ; 
   padding: 0;
   color: green;
-  font-size: 1.2vw;
+  font-size: large;
 }
 .continuar.disabled{
   background-color: gray;
@@ -86,51 +120,19 @@
   align-items: center;
   justify-content: center; 
   width: 40%;
-  /* border: black 1px solid; */
-  font-size: 1.5rem;
 }
 
-.form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+
+.Form {
   padding: 16px;
-  width: 100%;
+  width: 320px;
+  margin: 0 auto;
 }
 
-.input {
-  border: 0;
-  outline: 0;
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: -0.2px;
-  font-size: 16px;
-  border-radius: 320px;
-  padding: 16px;
-  background-color: white;
-  outline: none;
-  margin-right: 8px;
-  box-shadow: inset 2px 2px 5px #878a92, inset -10px -10px 10px  #FFF;
-  width: 100%;
-  box-sizing: border-box;
-  transition: all 0.2s ease-in-out;
-  appearance: none;
-  -webkit-appearance: none;
-}
-
-.input::-webkit-outer-spin-button,
-.input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 
 .label {
   display: block;
   margin-bottom: 24px;
   width: 100%;
-  max-width: 300px;
 }
 
-.input:focus {
-  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
-}

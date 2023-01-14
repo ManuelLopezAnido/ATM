@@ -72,17 +72,24 @@
   padding: 10px;
   width: 70%;
   height: 40%;
-  font-size: 1.5vw;
+  font-size: 1.2vw;
 	line-height: 2rem;
 }
+
+.modaldialog .buttons{
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 .modalbutton {
-  position: absolute;
+  width: 25%;
   right: 60px;
   bottom: 30px;
   border: 3px solid #333;
   background: #f1f1f1;
   padding: 15px 20px;
-  font-size: 1.1rem;
+  font-size: 0.9vw;
   text-transform: uppercase;
   display: block;
   transition: all 150ms ease-out;
