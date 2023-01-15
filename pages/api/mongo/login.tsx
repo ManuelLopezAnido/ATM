@@ -28,8 +28,6 @@ export default async function handler(
         res.status(400).json({ message: 'Method does not available'})
     }
   } catch (err) {
-    
-  } finally {
-
-  }
+    res.status(400).json({ message: `Error: ${err}`})
+  } 
 }
