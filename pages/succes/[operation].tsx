@@ -12,7 +12,7 @@ const Cancel = () => {
   useEffect(()=>{
     const timeout = setTimeout(() => {
       router.push('/welcome')
-    },10000)
+    },6000)
     return (() => clearTimeout(timeout))
   },
   [])

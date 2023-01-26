@@ -72,14 +72,14 @@ export default function EditUser() {
   const handleSubmit = (e:React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     setMethodUsed('PUT')
-    setMsgToDo(`¿Desea editar la cuenta de DNI ${user.dni}`)
+    setMsgToDo(`¿Desea editar la cuenta de DNI ${user.dni}?`)
     setShowModal(true)
   }
 
   const handleDelete = (e:React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    setMethodUsed('POST')
-    setMsgToDo(`¿Desea eliminar la cuenta de DNI ${user.dni}`)
+    setMethodUsed('DELETE')
+    setMsgToDo(`¿Desea eliminar la cuenta de DNI ${user.dni}?`)
     setShowModal(true)
   }
   const closeModal=()=>{
@@ -97,8 +97,13 @@ export default function EditUser() {
     fetch('/api/mongo/users', options)
     .then((res)=>res.json())
     .then((json)=> {
-      sessionStorage.removeItem("userATM");
-      json.response === 'OK' ? router.push(`/succes/user?msg=${json.message}`) : setMsgToDo(json.message)
+      if (json.response === 'OK') { 
+        sessionStorage.removeItem("userATM");
+        router.push(`/succes/user?msg=${json.message}`) 
+      } else {
+        inputs.newClave = ''
+        setMsgToDo(json.message)
+      }
     })
     .catch((err)=>console.error("error on server", err));
   } 
@@ -119,7 +124,7 @@ export default function EditUser() {
           <div className={styles.buttons}>
             <form className= {styles.form}>
                <label className={styles.subtitle}>
-                Editar
+                Edite sus datos
               </label>
               <label className={styles.dni}>
                 DNI: {user.dni}

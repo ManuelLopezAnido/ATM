@@ -39,7 +39,7 @@ export default async function handler(
         }
         await db.collection("USERS").insertOne(newUser);
         msg = {
-          message: `Usuario de DNI: ${body.dni} creado exitosamente`,
+          message: `Usuario de DNI: ${body.dni} creado exitosamente. Logearse para ingresar`,
           response: 'OK'
         }
         res.status(200).json(msg)
@@ -55,7 +55,7 @@ export default async function handler(
         });
         if (userFound.value) {
           msg = {
-            message: `Usuario modificado correctamente`,
+            message: `Usuario modificado correctamente. Debe logearse nuevamente`,
             response: 'OK'
           }
           res.status(200).json(msg)
