@@ -48,12 +48,13 @@ export default function Amount() {
       },
       body: JSON.stringify(userSend)
     };
-    fetch('/api/operation', options)
+    fetch('/api/mongo/operation', options)
     .then((res)=>res.json())
     .then((json)=> {
-      json.status ? router.push(`/succes/extraction?amount=${amount}&dni${user?.dni}`) : setShowModalA(true)
+      if (json.response === 'ERROR') {throw new Error}
+      json.response ? router.push(`/succes/extraction?amount=${amount}&dni${user?.dni}`) : setShowModalA(true)
     })
-    .catch((err)=>console.log("error on server", err));
+    .catch((err)=>alert(`error on server: ${err}`));
   } 
 
   const handleNumClick = (e: React.MouseEvent<HTMLButtonElement>, num:string)=>{

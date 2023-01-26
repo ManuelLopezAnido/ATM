@@ -7,17 +7,24 @@ import { useRouter } from 'next/navigation';
 type Props = {
   close: ()=>void
   show: boolean,
-  message ?: string
+  message?: string
+  actionToDo?: ()=>void
 }
 const Modal = (props: Props)=>{
  
   const router = useRouter();
+  let handleAceptar
 
-  const handleAceptar = () => {
-    sessionStorage.removeItem("userATM");
-    props.close()
-    router.push('/cancel')
+  if (props.actionToDo){
+    handleAceptar = props.actionToDo
+  } else { 
+    handleAceptar = () => {
+      sessionStorage.removeItem("userATM");
+      props.close()
+      router.push('/cancel')
+    }
   }
+ 
   return(
     <div 
     className={props.show ? styles.modalFade : styles.modalHidden} 

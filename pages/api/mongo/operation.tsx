@@ -9,12 +9,12 @@ type body = {
 }
 type sendResponse = {
   message:string
-  status:boolean
+  response:boolean
 }
 
 const sendRes: sendResponse = {
   message: ``,
-  status: false
+  response: false
 }
 
 export default async function handler(
@@ -37,9 +37,10 @@ export default async function handler(
             const newMoney:string = (userDni?.money - +opAmount).toString()
             const result=await db.collection("USERS").findOneAndUpdate({dni:dni},{$set:{money:newMoney}});
             sendRes.message = `Extraction of ${opAmount} was succeful`
-            sendRes.status = true
+            sendRes.response = true
             res.status(200).json(sendRes)
           } else {
+            sendRes.response = false
             sendRes.message = `Not enough $ ${opAmount} on the acount`
             res.status(200).json(sendRes)
           }
@@ -47,8 +48,12 @@ export default async function handler(
             const newMoney:string = (+userDni?.money + +opAmount).toString()
             await db.collection("USERS").findOneAndUpdate({dni:dni},{$set:{money:newMoney}})   
             sendRes.message = `Deposit of ${opAmount} was succeful`
-            sendRes.status = true
+            sendRes.response = true
             res.status(200).json(sendRes)
+        } else if (op==="balance"){
+          sendRes.response = true
+          sendRes.message = userDni?.money
+          res.status(200).json(sendRes)
         } else {
           const sendRes = {message: `operation not aviable`}
           res.status(401).json(sendRes)
@@ -59,6 +64,9 @@ export default async function handler(
         res.status(400).json({ message: 'Method does not available'})
     }
   } catch (err){
-    res.status(400).json({ message: `Error of DATABASE!: ${JSON.stringify(err)}`})
+    res.status(501).json({
+      response: 'ERROR', 
+      message: `Error of DATABASE!: ${JSON.stringify(err)}`
+    })
   }
 }

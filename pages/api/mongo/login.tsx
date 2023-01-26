@@ -22,7 +22,7 @@ export default async function handler(
       case 'POST':
         const userFound = await db.collection("USERS").findOne({dni:dni, clave:body.clave});
         const clone = userFound ? (({ clave, ...rest }) => rest)(userFound) : false // remove clave if user was found
-        res.status(200).send(clone)
+        res.status(200).send({user: clone, message:''})
       break
       default:
         res.status(400).json({ message: 'Method does not available'})

@@ -81,12 +81,13 @@ export default function Deposit() {
       },
       body: JSON.stringify(userSend)
     };
-    fetch('/api/operation', options)
+    fetch('/api/mongo/operation', options)
     .then((res)=>res.json())
     .then((json)=> {
-      json.status ? router.push(`/succes/deposit?amount=${total}&dni=${user?.dni}`) : alert("Error en el servidor") 
+      if (json.response === 'ERROR') {throw new Error}
+      json.response ? router.push(`/succes/deposit?amount=${total}&dni=${user?.dni}`) : alert("Error en el servidor") 
     })
-    .catch((err)=>console.error("error on server", err));
+    .catch((err)=>alert(`error on server: ${err}`));
   } 
   const handleChange = (e:React.ChangeEvent <HTMLInputElement>) => {
     const name = e.target.name;

@@ -29,7 +29,7 @@ const Welcome = () => {
     const timeout = setTimeout(() => {
       sessionStorage.removeItem("userATM");
       router.push('/cancel')
-    },30000)
+    },30000*100)
 
     return (() => clearTimeout(timeout))
   },[showModal])
@@ -65,6 +65,11 @@ const Welcome = () => {
         <Link href={'/balance'}>
           <button>
             Consulta de saldo
+          </button>
+        </Link>
+        <Link href={'/editUser'}>
+          <button>
+            Editar usuario
           </button>
         </Link>
       </div>

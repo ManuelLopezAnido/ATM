@@ -17,12 +17,12 @@
 .menu{
   display: flex;
   justify-content:space-around;
-  width: 60%;
+  width: 80%;
   flex-wrap: wrap;
 }
 .menu a{
   width: 220px;
-  margin: 15px 15px;
+  margin: 3% 0;
   text-decoration: none;
 }
 .menu button{

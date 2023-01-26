@@ -12,7 +12,6 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
       case "POST":
         let bodyObject = req.body;
         await db.collection("USERS").insertMany(bodyObject);
-        console.log("Body:",bodyObject)
         res.json({message: 'Data inserted successfully'});
         break;
       case "GET":

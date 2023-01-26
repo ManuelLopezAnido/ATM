@@ -24,18 +24,29 @@ export default async function handler(
     const db = client.db("ATM");
     const requestMethod = req.method;
     const body:user = req.body 
-    let msg:{message:string}
+    let msg:{message:string , response:string}
     switch (requestMethod) {
       case 'POST':
         const newUser = {...body,amount:"0"}
+        const sameDni = await db.collection("USERS").findOne({dni:body.dni})
+        if (sameDni) {
+          msg = {
+            message: `Error: el DNI ${body.dni} ya existe`,
+            response: 'EXIST'
+          }
+          res.status(200).json(msg)
+          return
+        }
         await db.collection("USERS").insertOne(newUser);
-        msg = {message: `You submitted the following data: ${JSON.stringify(body)}`}
+        msg = {
+          message: `Usuario de DNI: ${body.dni} creado exitosamente`,
+          response: 'OK'
+        }
         res.status(200).json(msg)
         break
       case 'PUT':
         const userFound= await db.collection("USERS").findOneAndUpdate({dni:body.dni, clave:body.clave},{
           $set: {
-            dni: body.newDni,
             clave: body.newClave,
             name: body.name,
             lastName: body.lastName,
@@ -43,21 +54,32 @@ export default async function handler(
           }
         });
         if (userFound.value) {
-          msg = {message: `User modifed correctly`}
+          msg = {
+            message: `Usuario modificado correctamente`,
+            response: 'OK'
+          }
           res.status(200).json(msg)
         } else {
-          msg = {message: `User not found`}
+          msg = {
+            message: `Clave incorrecta`,
+            response: 'NOT'
+          }
           res.status(200).json(msg)
         }
         break
       case 'DELETE':
         const userDFound = await db.collection("USERS").deleteOne({dni:body.dni, clave:body.clave});
-        console.log(userDFound)
         if (userDFound.deletedCount) {
-          msg = {message: `User deleted correctly`}
+          msg = {
+            message: `Usuario eliminado correctamente`,
+            response: 'OK'
+          }
           res.status(200).json(msg)
         } else {
-          msg = {message: `User not found`}
+          msg = {
+            message: `Clave incorrecta`,
+            response: 'NOT'
+        }
           res.status(200).json(msg)
         }
       break

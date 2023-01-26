@@ -15,10 +15,7 @@ export default function handler(
   res: NextApiResponse
 ) {
   const requestMethod = req.method;
-  console.log("BODY",req.body)
-  console.log("envv:",process.env.API_URL)
   const body = req.body
-  console.log('body',body.clave, body.dni)
   switch (requestMethod) {
     case 'POST':
       const newUser = {

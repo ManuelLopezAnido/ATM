@@ -30,8 +30,6 @@ export default function handler(
 ) {
   const requestMethod = req.method;
   const body = req.body
-  console.log(req.body)
-
   switch (requestMethod) {
     case 'PUT':
       const opAmount = body.amount

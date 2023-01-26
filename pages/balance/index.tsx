@@ -5,20 +5,29 @@ import { useRouter } from 'next/navigation';
 
 import { useState, useEffect } from 'react'
 const Balance = () => { //Podria hacer un Server Side Render para ver el saldo (solo a modo de practicar)
-  type user = {
-    name: string
-    money: string
+
+  type userSend = {
+    dni: string
+    operation: "extraction" | "deposit" | "balance"
   }
 
-  const [user, setUser] = useState <user | undefined> ()
+  const [dni, setDni] = useState <string> ('')
+  const [balance, setBalance] = useState <string> ("")
   const [showModal, setShowModal] = useState <boolean> (false)
   const router = useRouter();
   useEffect (()=>{
     const userRaw: string | null = sessionStorage.getItem("userATM");
-    userRaw ? 
-    setUser(JSON.parse(userRaw)) :  
-    router.push('/login')
+    if (userRaw) {
+      const userJSON = JSON.parse(userRaw)
+      setDni(userJSON.dni)
+    } else {
+      router.push('/login')
+    }
   },[])
+  useEffect(()=>{
+    dni && fetchBalanaceUser() //this is for a problem with stric mode
+  },[dni])
+  
 
   useEffect (()=>{
     const timeout = setTimeout(() => {
@@ -29,6 +38,26 @@ const Balance = () => { //Podria hacer un Server Side Render para ver el saldo (
     return (() => clearTimeout(timeout))
   },[showModal])
 
+  const fetchBalanaceUser = () => {
+    const userSend:userSend = {
+      "dni": dni,
+      "operation": "balance"
+    }
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(userSend)
+    };
+    fetch('/api/mongo/operation', options)
+    .then((res)=>res.json())
+    .then((json)=> {
+      if (json.response === 'ERROR') {throw new Error}
+      json.response ? setBalance(json.message) : alert("Error en el servidor") 
+    })
+    .catch((err)=>alert(`error on server: ${err}`));
+  } 
 
   const closeModal=()=>{
     setShowModal(false)
@@ -45,7 +74,7 @@ const Balance = () => { //Podria hacer un Server Side Render para ver el saldo (
           Su saldo es:
         </h2>
         <h3 className={styles.amount}>
-          ${user?.money}
+          ${balance}
         </h3>
         <div className= {styles.operation}>
           <div className={styles.question}> 

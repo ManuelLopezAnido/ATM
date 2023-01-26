@@ -44,17 +44,17 @@ export default function Login() {
       "clave": inputs.clave
     }
     const options = {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(userSend)
     };
-    fetch('/api/users', options)
+    fetch('/api/mongo/login', options)
     .then((res)=>res.json())
     .then((json)=> {
-      if (json){
-        const userString = JSON.stringify(json)
+      if (json.user){
+        const userString = JSON.stringify(json.user)
         sessionStorage.setItem("userATM", userString)
         router.push('/welcome')
       } else {
@@ -119,7 +119,7 @@ export default function Login() {
                 <input 
                   className={styles.input}
                   required
-                  type="number" 
+                  type="password" 
                   name='clave' 
                   value={inputs.clave || ''}  
                   onChange={handleChange} 
@@ -132,6 +132,9 @@ export default function Login() {
                   />
               </label>
             </form>
+            <div className={styles.newUser} onClick={()=>router.push("/newUser")}>
+              Nuevo Usuario
+            </div>
           </div>
 
 
