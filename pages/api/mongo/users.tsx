@@ -27,7 +27,7 @@ export default async function handler(
     let msg:{message:string , response:string}
     switch (requestMethod) {
       case 'POST':
-        const newUser = {...body,amount:"0"}
+        const newUser = {...body,money:"0"}
         const sameDni = await db.collection("USERS").findOne({dni:body.dni})
         if (sameDni) {
           msg = {
